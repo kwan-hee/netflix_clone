@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import Banner from '../components/Banner';
 import MovieSlide from '../components/MovieSlide';
 import ClipLoader from "react-spinners/ClipLoader";
-
+import css from './Home.module.scss';
 
 
 function Home() {
@@ -27,15 +27,17 @@ function Home() {
       return <ClipLoader color="#000000" loading={loading} size={150} />
     }
     return (
-    <div>
+    <div className={css.bg}>
      
      <Banner movie={popularMovies.results[4]}/>
 
       <h1>popular Movie</h1>
       <MovieSlide movies={popularMovies}/>
       <h1>Top rated Movie</h1>
+      
       <MovieSlide movies={topRatedMoives}/>
       <h1>Upcoming Movie</h1>
+      
       <MovieSlide movies={upComingMovies}/>
     </div>
   )
