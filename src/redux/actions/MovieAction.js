@@ -10,15 +10,21 @@ function getMoives(){
        const topRatedApi =  api.get(`/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`);
        const upComingApi =  api.get(`/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`);
 
-      let [popularMovies, topRatedMoives, upComingMovies] = await Promise.all([
+       const genreApi = api.get(`/genre/movie/list?api_key=${API_KEY}&language=en-US`);
+      let [popularMovies, topRatedMoives, upComingMovies, genreList] = await Promise.all([
         popularMovieApi,
-        topRatedApi,
-        upComingApi])
+        topRatedApi,        
+        upComingApi,
+        genreApi,
+      ])
+      console.log("genreList?: ",genreList);
             
       dispatch({
         type: "GET_MOVIES_SUCCESS",
         payload:{ popularMovies:popularMovies.data , topRatedMoives:topRatedMoives.data,
-                  upComingMovies:upComingMovies.data}
+                  upComingMovies:upComingMovies.data,
+                  genreList: genreList.data.genres,
+                }
       })
 
       }catch(error){
