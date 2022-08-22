@@ -5,6 +5,10 @@ import { Badge } from 'react-bootstrap';
 import { useSelector } from 'react-redux/es/exports';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useLocation } from "react-router";
+import css from "./MovieDetail.module.scss";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const MovieDetail = () => {
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -16,49 +20,50 @@ const MovieDetail = () => {
     let response = await fetch(url);
     let data = await response.json();
     console.log(data);
+    setProduct(data);
   };
   useEffect(() => {
     getProductDetail();
   }, []);
-
-  return {
-   
-  }
-
-
-
-
-  // const { state } = useLocation();
-  // const [MovieDetails, setMovieDetails] = React.useState(null);
-  // const params = useParams();
-  // const API_KEY = process.env.REACT_APP_API_KEY;
-  // console.log("MovieDetail_params: ", params )
-  // let id = params;
-  // console.log("id_params: ", id);
-  // async function getMovieDetailsFromAPI(id) {
+  console.log("product?: ",product)
+  return (
+    <Container>
+    <Row>
+      <Col>
+      <img className={css.detailImg}
+       src={`https://image.tmdb.org/t/p/original//${product.poster_path}`}/>
+      </Col>
+      <Col>
+        <div>
+            <h1>{product?.title}</h1>
+        </div>
+        <div>
+            <h3>리뷰: {product?.overview}</h3>
+        </div>
+        <div>
+            <h4>수입: {product?.revenue}</h4>
+        </div>
+        <div>
+            <h4>평점: {product?.revenue}</h4>
+        </div>
+      </Col>
+    </Row>
     
-  //   let url = `/movie/${id}?api_key=${API_KEY}&language=en-US`;
-  //   let res = await axios.get(url);
-  //   console.log("res.data: ", res.data)
-    // let url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
-    // let response = await fetch(url);
-    // let data = await response.json()
-    // console.log("data: ",data);
-    // setMovieDetails(res.data);
-    // getMovieReviewFromAPI(id);
-    // getMovieRelatedFromAPI(id);
-    // getTrailer(id);
+   </Container>
+
    
-  }
-  // console.log("movies: ",movies)
-  
-  // console.log("parmas_title: ",(item.id==params)? item.original_title:"" )
-//   return (
-//     <div>
-      
-     
-//     </div>
-//   )
-// }
+      /* <div>
+       <img className={css.detailImg}  */
+    //     src={`https://image.tmdb.org/t/p/original//${product.poster_path}`}/>
+    //   </div>
+    //  <h1>{product?.overview}</h1>
+    //  <h1>{product?.title}</h1>
+    // </div>
+    // <div>
+    //   <img className={css.detailImg}
+    //   src={`https://image.tmdb.org/t/p/original//${product.poster_path}`}/>
+    // </div>
+  )
+}
 
 export default MovieDetail   
