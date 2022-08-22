@@ -8,6 +8,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import css from './Home.module.scss';
 
 
+
 function Home() {
     const dispatch = useDispatch()
     const {popularMovies, topRatedMoives, upComingMovies, loading} = useSelector(state=>state.movie)
@@ -18,6 +19,8 @@ function Home() {
   useEffect(()=>{
     dispatch(MovieAction.getMoives())
   },[])
+
+  
   // loading 이 true 이면 loading 스피너를 보여주고
   // loading 이 false 이면 데이터를 보여준다. 
   // true: 데이터 도착전
