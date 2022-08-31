@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import Movies from './pages/Movies';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Navigation';
+import "react-multi-carousel/lib/styles.css";
+
 //1. 3개 페이지 필요, 홈페이지, movie 페이지, movieDetail 페이지
 //2. 홈페이지 배너 
 //3. 3가지 섹션의 영화를 볼수 있다. ( popular, top rated, upcoming)
